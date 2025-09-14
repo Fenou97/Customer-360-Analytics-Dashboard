@@ -88,3 +88,10 @@ SQL: For data extraction, cleaning, aggregations.
 Power BI: For visualization and storytelling.
 
 ## Data Manipulation
+
+- **Data Preparation**
+
+The raw data have been imported from Microsoft Excel into Microsoft Power BI for analysis. In PowerBI, Data profiling technique has been implemented to analyze the data to better understand their  structure, quality, and content.
+
+![data profiling Age](https://github.com/user-attachments/assets/21687d21-21d7-4e80-9f40-b03d4c8804d7)
+
