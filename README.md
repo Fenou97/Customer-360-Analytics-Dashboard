@@ -10,6 +10,7 @@
   
 - [Tools](#tools)
 
+-  [Data Manipulation](#data-manipulaation)
 
 ## Project Overview
 
@@ -95,3 +96,18 @@ The raw data have been imported from Microsoft Excel into Microsoft Power BI for
 
 ![data profiling Age](https://github.com/user-attachments/assets/21687d21-21d7-4e80-9f40-b03d4c8804d7)
 
+![Data Profiling resolution time](https://github.com/user-attachments/assets/e402d034-e113-493f-95b6-455809309593)
+
+![Data Profiling Transactions](https://github.com/user-attachments/assets/601cf8d0-445c-480d-898c-19aa6793d6ee)
+
+![Data Profiling Unit Price](https://github.com/user-attachments/assets/5a418e14-ef46-467c-83de-1827e928ad72)
+
+- **Exploratory Data Analysis**
+  Customer Lifetime Value (LTV)
+  
+  ```SQL
+  SELECT c.CustomerID, SUM(t.TotalAmount) AS LifetimeValue
+FROM Customers c
+JOIN Transactions t ON c.CustomerID = t.CustomerID
+GROUP BY c.CustomerID;
+``
