@@ -112,7 +112,11 @@ Customer segmentation counts
 FROM Customers
 GROUP BY Segment;
 ```
-![Customer segmentation counts](https://github.com/user-attachments/assets/c0722fd0-be6d-43c5-8e28-74cbb1a7c99c)
+|Segment|Customer Count|
+|----------|-------|
+|High-Value|136|
+|Low-Engagement|111|
+Medium-Value|253|
 
 *Customer demographics*
 ```SQL
@@ -139,3 +143,37 @@ GROUP BY
     END
 ORDER BY AgeGroup;
 ```
+|Age Group|Customer Count|
+|----------|-------|
+|25-34|107|
+|35-44|92|
+|45-54|124|
+|55-64|126|
+|65-69|51|
+
+*Top regions by number of customers*
+```SQL
+ Select Region,
+count (*) as CustomerCount
+from Customers group by Region;
+```
+|Region|Customer Count|
+|----------|-------|
+|Midwest|133|
+|Northwest|123|
+|South|133|
+|West Coast|111|
+
+*Sales / Transaction Analysis*
+
+Total revenue, quantity, average order value
+```SQL
+ SELECT 
+    SUM(TotalAmount) AS TotalRevenue,
+    SUM(Quantity) AS TotalUnitsSold,
+    AVG(TotalAmount) AS AvgOrderValue
+FROM Transactions;
+```
+|Total Revenue|Total Units Sold|Avg Order Value|
+|----------|-------|--------|
+|779869375.085236|150827|259956.458361745|
