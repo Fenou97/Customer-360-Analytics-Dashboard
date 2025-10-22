@@ -103,11 +103,39 @@ The raw data have been imported from Microsoft Excel into Microsoft Power BI for
 ![Data Profiling Unit Price](https://github.com/user-attachments/assets/5a418e14-ef46-467c-83de-1827e928ad72)
 
 - **Exploratory Data Analysis**
-  Customer Lifetime Value (LTV)
   
-  ```SQL
-  SELECT c.CustomerID, SUM(t.TotalAmount) AS LifetimeValue
-FROM Customers c
-JOIN Transactions t ON c.CustomerID = t.CustomerID
-GROUP BY c.CustomerID;
-``
+*Customer-level Analysis*
+
+Customer segmentation counts
+   ```SQL
+  SELECT Segment, COUNT(*) AS CustomerCount
+FROM Customers
+GROUP BY Segment;
+```
+![Customer segmentation counts](https://github.com/user-attachments/assets/c0722fd0-be6d-43c5-8e28-74cbb1a7c99c)
+
+*Customer demographics*
+```SQL
+SELECT
+    CASE
+        WHEN Age BETWEEN 25 AND 34 THEN '25-34'
+        WHEN Age BETWEEN 35 AND 44 THEN '35-44'
+        WHEN Age BETWEEN 45 AND 54 THEN '45-54'
+        WHEN Age BETWEEN 55 AND 64 THEN '55-64'
+        WHEN Age BETWEEN 65 AND 69 THEN '65-69'
+        ELSE 'Other'
+    END AS AgeGroup,
+    COUNT(*) AS CustomerCount
+FROM Customers
+WHERE Age BETWEEN 25 AND 69   -- filters only desired range
+GROUP BY 
+    CASE
+        WHEN Age BETWEEN 25 AND 34 THEN '25-34'
+        WHEN Age BETWEEN 35 AND 44 THEN '35-44'
+        WHEN Age BETWEEN 45 AND 54 THEN '45-54'
+        WHEN Age BETWEEN 55 AND 64 THEN '55-64'
+        WHEN Age BETWEEN 65 AND 69 THEN '65-69'
+        ELSE 'Other'
+    END
+ORDER BY AgeGroup;
+```
