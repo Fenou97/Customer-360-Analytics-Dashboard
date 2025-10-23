@@ -9,8 +9,8 @@
 - [Data Sources](#data-sources)
   
 - [Tools](#tools)
-
--  [Foundational Analysis (using SQL)](#foundational-analysis-(using-sql))
+- [Data Preparation](#data-preparation)
+- [Foundational Analysis (using SQL)](#foundational-analysis-(using-sql))
 
 ## Project Overview
 
@@ -88,9 +88,7 @@ SQL: For data extraction, cleaning, aggregations.
 
 Power BI: For visualization and storytelling.
 
-## Data Manipulation
-
-- **Data Preparation**
+## Data Preparation
 
 The raw data have been imported from Microsoft Excel into Microsoft Power BI for analysis. In PowerBI, Data profiling technique has been implemented to analyze the data to better understand their  structure, quality, and content.
 
@@ -102,11 +100,11 @@ The raw data have been imported from Microsoft Excel into Microsoft Power BI for
 
 ![Data Profiling Unit Price](https://github.com/user-attachments/assets/5a418e14-ef46-467c-83de-1827e928ad72)
 
-- **Exploratory Data Analysis**
+## Foundational Analysis (using SQL)**
   
-*Customer-level Analysis*
+- **Customer-level Analysis**
 
-Customer segmentation counts
+*Customer segmentation counts*
    ```SQL
   SELECT Segment, COUNT(*) AS CustomerCount
 FROM Customers
@@ -118,7 +116,7 @@ GROUP BY Segment;
 |Low-Engagement|111|
 Medium-Value|253|
 
-Customer demographics
+*Customer demographics*
 ```SQL
 SELECT
     CASE
@@ -151,7 +149,7 @@ ORDER BY AgeGroup;
 |55-64|126|
 |65-69|51|
 
-Top regions by number of customers
+*Top regions by number of customers*
 ```SQL
  Select Region,
 count (*) as CustomerCount
@@ -164,9 +162,9 @@ from Customers group by Region;
 |South|133|
 |West Coast|111|
 
-*Sales / Transaction Analysis*
+- **Sales / Transaction Analysis**
 
-Total revenue, quantity, average order value
+*Total revenue, quantity, average order value*
 ```SQL
  SELECT 
     SUM(TotalAmount) AS TotalRevenue,
@@ -178,7 +176,7 @@ FROM Transactions;
 |----------|-------|--------|
 |779869375.085236|150827|259956.458361745|
 
-Revenue by product category
+*Revenue by product category*
 ```SQL
  Select p.Category, sum (t.TotalAmount) as Revenue from Transactions t
 join Products p on t.ProductID = p.productID group by category;
@@ -189,7 +187,7 @@ join Products p on t.ProductID = p.productID group by category;
 |Equipment|173145140.728699|
 |Supplies|238939802.804565|
 
-Top 10 Customers by Lifetime Spend
+*Top 10 Customers by Lifetime Spend*
 
 ```SQL
 SELECT TOP 10
@@ -209,3 +207,7 @@ group by c.CustomerID order by LifetimeSpend DESC;
 |C0282|3738739.57305908|
 |C0493|3701594.49023438|
 |C0203|3633225.65039063|
+
+## Support Analysis
+
+- **Tickets per customer or per region**
