@@ -118,7 +118,7 @@ GROUP BY Segment;
 |Low-Engagement|111|
 Medium-Value|253|
 
-*Customer demographics*
+Customer demographics
 ```SQL
 SELECT
     CASE
@@ -151,7 +151,7 @@ ORDER BY AgeGroup;
 |55-64|126|
 |65-69|51|
 
-*Top regions by number of customers*
+Top regions by number of customers
 ```SQL
  Select Region,
 count (*) as CustomerCount
@@ -177,3 +177,35 @@ FROM Transactions;
 |Total Revenue|Total Units Sold|Avg Order Value|
 |----------|-------|--------|
 |779869375.085236|150827|259956.458361745|
+
+Revenue by product category
+```SQL
+ Select p.Category, sum (t.TotalAmount) as Revenue from Transactions t
+join Products p on t.ProductID = p.productID group by category;
+```
+|Category|Revenue|
+|----------|-------|
+|Consumables|3677784431.551971|
+|Equipment|173145140.728699|
+|Supplies|238939802.804565|
+
+Top 10 Customers by Lifetime Spend
+
+```SQL
+SELECT TOP 10
+ c.CustomerID, SUM(t.TotalAmount) as LifetimeSpend from Customers c
+join Transactions T on c.CustomerID= t.CustomerID 
+group by c.CustomerID order by LifetimeSpend DESC;
+```
+|Customer ID|Lifetime Spend|
+|----------|-------|
+|C3057|4845268.984375|
+|C0047|4800708.828125|
+|C0365|4130438.35253906|
+|C0395|4096442.703125|
+|C0321|3959952.01171875|
+|C0347|3947771.453125|
+|C0274|3834397.1875|
+|C0282|3738739.57305908|
+|C0493|3701594.49023438|
+|C0203|3633225.65039063|
