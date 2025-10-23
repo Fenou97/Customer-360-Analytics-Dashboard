@@ -10,7 +10,7 @@
   
 - [Tools](#tools)
 
--  [Data Manipulation](#data-manipulaation)
+-  [Foundational Analysis (using SQL)](#foundational-analysis-(using-sql))
 
 ## Project Overview
 
