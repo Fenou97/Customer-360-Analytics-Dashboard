@@ -3,14 +3,12 @@
 ## Table of contents
 
 - [Project Overview](#project-overview)
-
 - [Research Questions](#research-questions)
-
 - [Data Sources](#data-sources)
-  
 - [Tools](#tools)
 - [Data Preparation](#data-preparation)
 - [Foundational Analysis (using SQL)](#foundational-analysis-(using-sql))
+- [Support Analysis](#support-analysis)
 
 ## Project Overview
 
@@ -211,3 +209,4 @@ group by c.CustomerID order by LifetimeSpend DESC;
 ## Support Analysis
 
 - **Tickets per customer or per region**
+
