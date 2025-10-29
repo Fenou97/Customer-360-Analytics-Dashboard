@@ -114,6 +114,8 @@ GROUP BY Segment;
 |Low-Engagement|111|
 Medium-Value|253|
 
+The customer base is primarily composed of **Medium-Value customers (253)**, followed by **High-Value (136)** and **Low-Engagement customers (111**). This suggests a strong middle-performing segment with potential to move more customers into the high-value category through targeted engagement strategies.
+
 *Customer demographics*
 ```SQL
 SELECT
@@ -147,6 +149,8 @@ ORDER BY AgeGroup;
 |55-64|126|
 |65-69|51|
 
+Demographically, the largest age groups are **55–64 (126 customers)** and **45–54 (124 customers)**, indicating that the business serves a more mature customer audience. Younger age bands such as 25–34 (107 customers) and 35–44 (92 customers) are slightly smaller, presenting an opportunity for growth in younger segments.
+
 *Top regions by number of customers*
 ```SQL
  Select Region,
@@ -159,6 +163,8 @@ from Customers group by Region;
 |Northwest|123|
 |South|133|
 |West Coast|111|
+
+Geographically, customers are fairly evenly distributed across regions, with both the **Midwest** and **South** representing the highest concentration at 133 customers each, followed by the **Northwest (123)** and **West Coast (111)**.
 
 - **Sales / Transaction Analysis**
 
@@ -184,6 +190,8 @@ join Products p on t.ProductID = p.productID group by category;
 |Consumables|3677784431.551971|
 |Equipment|173145140.728699|
 |Supplies|238939802.804565|
+
+From a revenue standpoint, **Consumables** are the top-performing category, generating the highest revenue, followed by **Supplies, and then **Equipment**. This highlights the importance of recurring, consumable product offerings in driving sales volume.
 
 *Top 10 Customers by Lifetime Spend*
 
