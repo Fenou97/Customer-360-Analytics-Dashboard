@@ -170,7 +170,7 @@ from Customers group by Region;
     AVG(TotalAmount) AS AvgOrderValue
 FROM Transactions;
 ```
-|Total Revenue|Total Units Sold|Avg Order Value|
+|Total Revenue ($)|Total Units Sold|Avg Order Value|
 |----------|-------|--------|
 |779869375.085236|150827|259956.458361745|
 
@@ -179,7 +179,7 @@ FROM Transactions;
  Select p.Category, sum (t.TotalAmount) as Revenue from Transactions t
 join Products p on t.ProductID = p.productID group by category;
 ```
-|Category|Revenue|
+|Category|Revenue ($)|
 |----------|-------|
 |Consumables|3677784431.551971|
 |Equipment|173145140.728699|
@@ -193,7 +193,7 @@ SELECT TOP 10
 join Transactions T on c.CustomerID= t.CustomerID 
 group by c.CustomerID order by LifetimeSpend DESC;
 ```
-|Customer ID|Lifetime Spend|
+|Customer ID|Lifetime Spend ($)|
 |----------|-------|
 |C3057|4845268.984375|
 |C0047|4800708.828125|
@@ -208,5 +208,42 @@ group by c.CustomerID order by LifetimeSpend DESC;
 
 ## Support Analysis
 
-- **Tickets per customer or per region**
+- **Tickets per customer**
+
+```SQL
+SELECT TOP 10
+c.CustomerID, count (cs.TicketID) as TotalTicket from Customers c 
+join CustomerService cs on c.CustomerID = cs.CustomerID group by c.CustomerID order by TotalTicket DESC;
+```
+|Customer ID|Total Tickets|
+|----------|-------|
+|C0143|10|
+|C00569|10|
+|C0156|9|
+|C0040|8|
+|C0052|	8|
+|C0367|8|
+|C0380|8|
+|C0282|8|
+|C0054|7|
+|C0071|7|
+
+- **Products that generate most revenue and most support issues?**
+ ```SQL
+SELECT TOP 10 p.ProductID, sum(t.TotalAmount) as Revenue, count(c.TicketID) as TotalTicket from Products p 
+left join Transactions t on p.ProductID =t.ProductID 
+left join CustomerService c on c.CustomerID = t.CustomerID group by p.ProductID order by TotalTicket DESC;
+``` 
+|Product ID|Revenue ($)|Total Tickets|
+|----------|-------|-------|
+|32.00	|112969144.818359|233|
+|43.00|76141083.1552734|230|
+|44.00|108186291.628906|229|
+|50.00|25327867.5983887|214|
+|30.00|21706055.6367188|212|
+|42.00|51673907.0053711|211|
+|21.00|102230248.5|209|
+|37.00|20255106.9707031|207|
+|10.00|47524852.6923828|206|
+|41.00|69491218.0224609|206|
 
