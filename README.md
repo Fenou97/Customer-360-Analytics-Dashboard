@@ -98,7 +98,7 @@ The raw data have been imported from Microsoft Excel into Microsoft Power BI for
 
 ![Data Profiling Unit Price](https://github.com/user-attachments/assets/5a418e14-ef46-467c-83de-1827e928ad72)
 
-## Foundational Analysis (using SQL)**
+## Foundational Analysis (using SQL)
   
 - **Customer-level Analysis**
 
@@ -236,7 +236,51 @@ join CustomerService cs on c.CustomerID = cs.CustomerID group by c.CustomerID or
 |C0054|7|
 |C0071|7|
 
+- **Issue per customer**
+
+|CustomerID|Issue Count|
+|----------|-------|
+|C0143|10|
+|C0056|9|
+|C0156|9|
+|C0040|8|
+|C0052|8|
+|C0367|8|
+|C0380|8|
+|C0382|8|
+|C0054|7|
+|C0071|7|
+|C0074|7|
+|C0164|7|
+|C0248|7|
+C0311|7|
+C0324|7|
+
+- **Issue Count**
+  
+ ```SQL
+select IssueType, count (*)  as IssueCount from CustomerService group by IssueType;
+```
+|Issue Type|Count|
+|------|------|
+|Technical Support|	389|
+|Product Defect|377|
+|Billing Inquiry|371|
+|Delivery Delay|363|
+
+- **Status Count**
+- 
+ ```SQL
+select Status, count (*) as StatusCount from CustomerService group by Status;
+```
+|Status|Count|
+|------|------|
+|Closed|516|
+|In Progress|503|
+|Open|481|
+
 - **Products that generate most revenue and most support issues?**
+  
  ```SQL
 SELECT TOP 10 p.ProductID, sum(t.TotalAmount) as Revenue, count(c.TicketID) as TotalTicket from Products p 
 left join Transactions t on p.ProductID =t.ProductID 
@@ -254,4 +298,5 @@ left join CustomerService c on c.CustomerID = t.CustomerID group by p.ProductID 
 |37.00|20255106.9707031|207|
 |10.00|47524852.6923828|206|
 |41.00|69491218.0224609|206|
+
 
