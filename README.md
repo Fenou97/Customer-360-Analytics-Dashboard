@@ -214,6 +214,8 @@ group by c.CustomerID order by LifetimeSpend DESC;
 |C0493|3701594.49023438|
 |C0203|3633225.65039063|
 
+The top 10 customers by lifetime spend each contribute between $3.6 million and $4.8 million, with the highest-spending customer (C3057) generating over $4.8 million in total purchases. This highlights a small group of highly valuable customers driving significant revenue, making them key targets for retention and loyalty initiatives.
+
 ## Support Analysis
 
 - **Tickets per customer**
@@ -236,6 +238,8 @@ join CustomerService cs on c.CustomerID = cs.CustomerID group by c.CustomerID or
 |C0054|7|
 |C0071|7|
 
+C0143 and C00569 each submitted 10 tickets, followed closely by C0156 with 9 tickets. Several others, including C0040, C0052, C0367, C0380, and C0282, reported 8 tickets each.This indicates that certain customers have frequent interactions with the support team, possibly due to recurring technical or product-related issues. These high-ticket customers may require proactive follow-up or enhanced support to improve their experience and reduce repeated issue reports.
+
 - **Issue per customer**
 
 |CustomerID|Issue Count|
@@ -256,6 +260,8 @@ join CustomerService cs on c.CustomerID = cs.CustomerID group by c.CustomerID or
 C0311|7|
 C0324|7|
 
+C0143 again leads with 10 issues, followed by C0056 and C0156, each with 9 issues. Multiple customers including C0040, C0052, C0367, C0380, and C0382, each logged 8 issues, while others such as C0054, C0071, and C0074 reported 7 issues. This view provides insight into which customers encounter the most frequent or recurring problems, helping identify where product reliability or customer experience improvements may be needed.
+
 - **Issue Count**
   
  ```SQL
@@ -268,8 +274,10 @@ select IssueType, count (*)  as IssueCount from CustomerService group by IssueTy
 |Billing Inquiry|371|
 |Delivery Delay|363|
 
+In the support data, the most common issue types are Technical Support (389 cases) and Product Defects (377 cases), followed closely by Billing Inquiries (371) and Delivery Delays (363). This distribution suggests a balanced spread of customer concerns, with slightly higher volumes around product and technical issues.
+
 - **Status Count**
-- 
+  
  ```SQL
 select Status, count (*) as StatusCount from CustomerService group by Status;
 ```
@@ -278,6 +286,8 @@ select Status, count (*) as StatusCount from CustomerService group by Status;
 |Closed|516|
 |In Progress|503|
 |Open|481|
+
+Regarding ticket status, most cases are Closed (516), indicating good resolution performance, though a substantial number remain In Progress (503) and Open (481). This may point to an opportunity to streamline issue resolution processes and improve response efficiency.
 
 - **Products that generate most revenue and most support issues?**
   
